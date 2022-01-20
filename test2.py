@@ -1,45 +1,22 @@
-class Solution:
-    def isValid(self, s: str) -> bool:
-        length = len(s)
-        if length % 2 != 0:
-            return False
-        stack = []
-        for i in s:
-            if i == '(':
-                stack.append(i)
-            elif i == '{':
-                stack.append(i)
-            elif i == '[':
-                stack.append(i)
+from typing import Optional
 
-            print(stack.pop())
-            if len(stack) > 0:
-                if i == ')':
-                    if stack[-1] == '(':
-                        stack.pop()
-                    else:
-                        return False
-                elif i == '}':
-                    if stack[-1] == '{':
-                        stack.pop()
-                    else:
-                        return False
-                elif i == ']':
-                    if stack[-1] == '[':
-                        stack.pop()
-                    else:
-                        return False
-            else:
-                return False
-        if len(stack) > 0:
-            return False
-        return True
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+
+class Solution:
+    def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
+        pass
 
 
 def main():
     string = "()"
     s = Solution()
-    print(s.isValid(string))
+    print(s.mergeTwoLists(string))
 
 
 main()
