@@ -2,38 +2,37 @@ from typing import List
 
 
 class Solution:
-    def checkIfExist(self, arr: List[int]) -> bool:
-        if len(arr) == 0:
-            return False
+    def searchInsert(self, nums: List[int], target: int) -> int:
+        low = 0
+        high = len(nums) - 1
+        mid = 0
 
-        # arr[:] = [abs(ele) for ele in arr]
-        arr[:] = sorted(arr, reverse=True)
-        print(arr)
-        length: int = len(arr)
-        # for i in range(0, length):
-        #     if arr[i] % 2 == 0 and arr[i] != 0:
-        #         for j in reversed(arr):
-        #             if arr[i] == j * 2:
-        #                 return True
-        #     else:
-        #         continue
-        # return False
+        while low <= high:
 
-        for i in range(0, length):
-            if arr[i] % 2 == 0:
-                for j in range(0, length):
-                    if arr[i] == arr[j] * 2 and i != j:
-                        return True
-            else:
-                continue
-        return False
+            mid = (high + low) // 2
+
+            # If x is greater, ignore left half
+            if nums[mid] < target:
+                low = mid + 1
+
+            # If x is smaller, ignore right half
+            elif nums[mid] > target:
+                high = mid - 1
+
+            # means x is present at mid
+            elif nums[mid] == target:
+                return mid
+
+        # If we reach here, then the element was not present
+        return low
 
 
 def main():
-    arr = [0, 0]
+    nums = [1, 3, 5, 6]
+    target = 5
 
     s = Solution()
-    print(s.checkIfExist(arr))
+    print(s.searchInsert(nums, target))
 
 
 main()
