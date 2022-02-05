@@ -2,30 +2,25 @@ from typing import List
 
 
 class Solution:
-    def validMountainArray(self, arr: List[int]) -> bool:
-        N = len(arr)
-        i = 0
+    def function1(self, x: int) -> int:
+        r = 1
+        r += x
 
-        # walk up
-        while i + 1 < N and arr[i] < arr[i + 1]:
-            i += 1
+        if x > 4 and x < 10:
+            r += 2 * x
+        elif x <= 4:
+            r += 3 * x
+        else:
+            r += 4 * x
 
-        # peak can't be first or last
-        if i == 0 or i == N - 1:
-            return False
-
-        # walk down
-        while i + 1 < N and arr[i] > arr[i + 1]:
-            i += 1
-
-        return i == N - 1
+        return r
 
 
 def main():
-    arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    x = 10
 
     s = Solution()
-    print(s.validMountainArray(arr))
+    print(s.function1(x))
 
 
 main()
