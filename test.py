@@ -1,38 +1,36 @@
 from typing import List
+from xmlrpc.client import MAXINT
 
 
 class Solution:
-    def searchInsert(self, nums: List[int], target: int) -> int:
-        low = 0
-        high = len(nums) - 1
-        mid = 0
+    def maxSubArray(self, nums: List[int]) -> int:
+        max_so_far = -MAXINT - 1
+        max_ending_here = 0
+        for i in range(0, len(nums)):
+            max_ending_here += nums[i]
+            if max_so_far < max_ending_here:
+                max_so_far = max_ending_here
 
-        while low <= high:
+            if max_ending_here < 0:
+                max_ending_here = 0
+        return max_so_far
 
-            mid = (high + low) // 2
-
-            # If x is greater, ignore left half
-            if nums[mid] < target:
-                low = mid + 1
-
-            # If x is smaller, ignore right half
-            elif nums[mid] > target:
-                high = mid - 1
-
-            # means x is present at mid
-            elif nums[mid] == target:
-                return mid
-
-        # If we reach here, then the element was not present
-        return low
+    # max_so_far = -MAXINT - 1
+    # max_ending_here = 0
+    # for i in range(0, len(nums)):
+    #     max_ending_here += nums[i]
+    #     if max_so_far < max_ending_here:
+    #         max_so_far = max_ending_here
+    #     elif max_ending_here < 0:
+    #         max_so_far = 0
+    # return max_so_far
 
 
 def main():
-    nums = [1, 3, 5, 6]
-    target = 5
+    nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4]
 
     s = Solution()
-    print(s.searchInsert(nums, target))
+    print(s.maxSubArray(nums))
 
 
 main()
