@@ -1,23 +1,23 @@
-from typing import List
-
-
 class Solution:
-    def function1(self, a: int, r: int, p: int, n: int) -> int:
-        result = a
-        for i in range(1, n + 1):
-            result += (a + (i * r)) ** p
+    def fib(self, n: int) -> int:
+        cache = [0] * (n + 1)
+        print(cache)
+        return fibn(n) * fibn(n)
 
-        return result
+
+def fibn(n: int) -> int:
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    return fibn(n - 1) + fibn(n - 2)
 
 
 def main():
-    a = int(input("Enter an Integer a: "))
-    r = int(input("Enter an Integer r: "))
-    p = int(input("Enter an Integer p: "))
-    n = int(input("Enter an Integer n: "))
+    salary = 4
 
     s = Solution()
-    print(s.function1(a, r, p, n))
+    print(s.fib(salary))
 
 
 main()
